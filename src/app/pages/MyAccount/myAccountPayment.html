@@ -1,0 +1,24 @@
+<div class="my-account account-payment">
+    <h1>My Account Payment</h1>
+
+    <div class="checkout-step__payment-list" *ngFor = 'let payment of LoginService.myAccountPaymentsInfo; let i = index'>
+        <div class="row">
+            <div class="add_block_name col-xs-4">{{payment.cardName}}</div>
+            <div class="add_block_type col-xs-4">{{payment.cardType}}</div>
+            <div class="add_block_type col-xs-4">{{payment.cardNumber}}</div>
+            <div class="col-xs-12">Your {{payment.cardType}} will be changed by Ecommerce</div>
+        </div>
+        <a class="account-payment__delete" (click)="accountPaymentRemove(payment)">Delete</a>
+    </div>
+    <div class="checkout-step__body_action">
+        <a class="btn btn-primary" (click)="accountPaymentModalAdd()">Add New</a>
+    </div>
+
+</div>
+<div class="common-modal" *ngIf="accountPaymentModal">
+    <div class="common-modal__body">
+        <a class="common-modal__close close" (click)="accountPaymentModalClose()">&times;</a>
+        <app-payment></app-payment>
+    </div>
+    <div class="common-modal-bg"></div>
+</div>

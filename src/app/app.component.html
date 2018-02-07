@@ -1,0 +1,12 @@
+<div class="sitewrapper">
+	<app-header (optionSelected)="optionSelectedCheck($event)"></app-header>
+
+	<div class="main-contentarea">
+
+		<div class="container">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+
+	<app-footer></app-footer>
+</div>

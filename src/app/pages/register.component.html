@@ -1,0 +1,39 @@
+<div class="registe-page">
+    <h1 class="pages-title">Register Page</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <form (ngSubmit)="registerSubmit(registerForm)" #registerForm="ngForm" id="register-form" class="register-form">
+                <fieldset>
+                    <legend class="bold">Register Form</legend>
+                    <div class="notification-error" *ngIf="LoginService.registerServiceMsg">
+                        <div class="notification-error__title">{{LoginService.registerServiceMsg}}</div>
+                    </div>
+                    <div class="form-group">
+                            <label>First Name</label>
+                            <input placeholder="First Name" required ngModel name="firstName" class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left">Last Name</label>
+                            <input placeholder="Last Name" required ngModel name="lastName" class="form-control" type="text">
+                        </div> 
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input placeholder="Email address" required ngModel name="username" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="pull-left">Password</label>
+                        <input placeholder="Password" required ngModel name="password" class="form-control" type="password">
+                    </div> 
+                    <div class="form-group">
+                        <input type="submit" [disabled]="!registerForm.valid" value="Register" class="btn btn-primary" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+
+        </div>
+    </div>
+</div>
+
+

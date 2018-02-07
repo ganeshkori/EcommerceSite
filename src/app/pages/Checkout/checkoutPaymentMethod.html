@@ -1,0 +1,57 @@
+<div class="checkout-step__head">
+    <h3 class="checkout-step__head_title bold"> 4 - Payment Method </h3>
+</div>
+<div class="checkout-step__body">
+    <div class="checkout-step__payment">
+        <div class="checkout-step__payment_item">
+            <div class="checkout-step__payment_head">
+                <h4 class="checkout-step__body_title bold">Payment Method:</h4>
+            </div>
+            <form class="main-form checkout-step__payment_form" (ngSubmit)="checkoutPaymentMethodForm(paymentMethodForm)" #paymentMethodForm="ngForm">
+                <fieldset>
+                    <div class="checkout-step__payment-list" *ngFor = 'let payment of LoginService.myAccountPaymentsInfo; let i = index'>
+                        <!-- <div class="checkout-step__shipping-add">
+                            <p>{{payment.cardType}} : <span id="">{{payment.cardNumber}}</span></p>
+                            <p>Your {{payment.cardType}} will be changed by Ecommerce</p>									
+                        </div> -->
+                        <div class="radio">
+                            <input id="paymentMethod{{i}}" ngModel required value="{{i}}" name="paymentMethod" type="radio">
+                            <label for="paymentMethod{{i}}">
+                                <div class="row">
+                                    <div class="add_block_name col-xs-4">{{payment.cardName}}</div>
+                                    <div class="add_block_type col-xs-4">{{payment.cardType}}</div>
+                                    <div class="add_block_type col-xs-4">{{payment.cardNumber}}</div>
+                                    <div class="col-xs-12">Your {{payment.cardType}} will be changed by Ecommerce</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="checkout-step__body_action">
+                            <a class="btn btn-primary" (click)="paymentModalOpen()">Add New</a>
+                        <input type="submit" [disabled]="!paymentMethodForm.valid" name="" id="" class="btn btn-primary " value="Continue">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="checkout-step__success">
+    <div class="checkout-step__payment-method">
+        <div class="checkout-step__shipping-add">
+            <h4 class="checkout-step__body_title bold">Payment Method:</h4>
+            <p>{{CheckoutStep.checkoutPaymentMethod[0].cardName}} - {{CheckoutStep.checkoutPaymentMethod[0].cardType}} : <span id="">{{CheckoutStep.checkoutPaymentMethod[0].cardNumber}}</span></p>
+            <p>Your {{CheckoutStep.checkoutPaymentMethod[0].cardType}} will be changed by Ecommerce</p>									
+        </div>
+    </div>
+    <div class="checkout-step__success_edit">
+        <a href="#" title="Edit" class="btn btn-secondry">EDIT</a>
+    </div>
+</div>
+
+<div class="common-modal" *ngIf="paymentModal">
+    <div class="common-modal__body">
+        <a class="common-modal__close close" (click)="paymentModalClose()">&times;</a>
+        <app-payment></app-payment>
+    </div>
+    <div class="common-modal-bg"></div>
+</div>

@@ -1,0 +1,49 @@
+<div class="payment-section">
+    <h2>Add Payment</h2>
+    <form class="main-form checkout-step__payment_form" (ngSubmit)="addAddressForm(addPaymentForm)" #addPaymentForm="ngForm">
+        <fieldset>
+            <p class="required-field">*Required fields.</p>
+            <div class="checkout-step__payment_info row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="nameCard">Name on Card*</label>
+                    <input ngModel class="form-control" id="nameCard" placeholder="Name on card" name="cardName" type="text">
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="cardNumber">Card number*</label>
+                    <input ngModel class="form-control" id="cardNumber" placeholder="Card number" name="cardNumber" type="text">
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="cardType">Card Type*</label>
+                    <select ngModel class="selectbox-blue form-control" id="cardType" name="cardType">
+                        <option value="American Express">American Express</option>
+                        <option value="VISA">VISA</option>
+                        <option value="Debit">Debit</option>
+                        <option value="Credit">Credit</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-5 form-group checkout-step__payment_date">
+                    <label for="exprirationDate">Expriration date*</label>
+                    <select ngModel class="selectbox-blue form-control" name="monthExpriration">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                    </select>
+                    <select ngModel class="selectbox-blue form-control" name="yearExpriration">
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group checkout-step__payment_security">
+                    <label for="cardSecurity">Card Security*</label>
+                    <input ngModel class="form-control" id="cardSecurity" placeholder="234" name="cardSecurity" type="text">
+                </div>
+            </div>
+            <div class="checkout-step__body_action">
+                <input type="submit" name="" id="" class="btn btn-primary " value="Continue">
+            </div>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div class="loading" *ngIf="CommonServices.loading">
+	<div class="loading-bg"></div>
+	<div class="loading-img">
+		<!-- <img src="" alt="Loading..." /> -->
+	</div>
+</div>
+<header class="global-header" id="globalHeader" role="header">
+	<div class="container">
+		<div class="row global-header__top">
+			<div class="col-xs-6"><h1>Header</h1></div>
+			<div class="col-xs-6 text-right">
+				<app-minicart></app-minicart>
+			</div>
+		</div>
+		
+		<app-navigation></app-navigation>
+	</div>
+</header>
+
+<!--<a href="#" (click)="Showhide('Show')">Show</a>
+<a href="#" (click)="Showhide('Hide')">Hide</a>-->

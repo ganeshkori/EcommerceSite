@@ -1,0 +1,45 @@
+<h1 class="pages-title">Product Details</h1>
+<div class="similar-products">
+	<div *ngFor = 'let product of productList'>
+        <div class="similar-product" *ngIf='productID === product.ID'>
+            <div class="similar-product__title">
+                <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
+            </div>
+            <div class="similar-product__img">
+                <img [src] = 'product.url'>
+            </div>
+            <div class="rating">
+                <div class="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+            </div>
+            <div class="similar-product__info">
+                {{product.Details}}
+            </div>
+            <div class="similar-product__price bold">
+                Price : {{CommonServices.currencyFormat(product.Price * 1)}}
+            </div>
+            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+            <div class="similar-product__option">
+                <a class="btn btn-primary" (click)="addToCart(product.ID)">Add To Cart</a>
+                <a class="btn btn-primary" routerLink="">Add To Wishlist</a>
+            </div>
+            <br />
+            {{addedToCart}}
+            <div class="dropdown" appDropdown>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">HTML</a></li>
+                  <li><a href="#">CSS</a></li>
+                  <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div> 
+        </div>
+    </div>
+</div>

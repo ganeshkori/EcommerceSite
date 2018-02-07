@@ -1,0 +1,52 @@
+<div class="checkout-step__head">
+    <h3 class="checkout-step__head_title bold">1 - Shipping  Information </h3>
+</div>
+<div class="checkout-step__body">
+    <div class="checkout-step__body_address">
+        <h3 class="checkout-step__body_title bold">Shipping Address</h3>
+        <form class="main-form" (ngSubmit)="checkoutShippingForm(shippingForm)" #shippingForm="ngForm">
+            <div class="checkout-step__body_address-list" *ngFor = 'let address of LoginService.myAccountAddressBook; let i = index'>
+                <div class="add_block_item">
+                    <div class="radio">
+                        <input id="shippingaddress{{i}}" ngModel required value="{{i}}" name="shippingAddress" type="radio">
+                        <label for="shippingaddress{{i}}">
+                            <div class="add_block_name">{{address.firstName}} {{address.lastName}}</div>
+                            <div class="add_block_address">
+                                {{address.address}} {{address.address2}}, {{address.city}}, 
+                                State : {{address.state}}, Country : {{address.country}}
+                            </div>
+                            <div class="add_block_phone">Phone : {{address.ext}}-{{address.telephone}}</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-step__body_action">
+                <a class="btn btn-primary" (click)="checkoutAddShipping()">Add New</a>
+                <input type="submit" [disabled]="!shippingForm.valid" name="" id="" class="btn btn-primary " value="Continue">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="checkout-step__success">
+    <div class="checkout-step__shipping">
+        <div class="checkout-step__shipping-add">
+            <h4 class="checkout-step__body_title bold">Shipping Address:</h4>
+            <p class="bold">{{CheckoutStep.checkoutShipping[0].firstName}} {{CheckoutStep.checkoutShipping[0].lastName}}</p>
+            <p>{{CheckoutStep.checkoutShipping[0].address}}</p>
+            <p>{{CheckoutStep.checkoutShipping[0].address2}}, City: {{CheckoutStep.checkoutShipping[0].city}}</p>
+            <p class="sub-text">State : {{CheckoutStep.checkoutShipping[0].state}}, Country : {{CheckoutStep.checkoutShipping[0].country}}</p>
+            <p class="sub-text">Phone: {{CheckoutStep.checkoutShipping[0].ext}}-{{CheckoutStep.checkoutShipping[0].telephone}}</p>
+            <!-- <p>Email : {{CheckoutStep.checkoutShipping[0].email}}</p> -->
+         </div>
+         <div class="checkout-step__success_edit">
+             <a href="#" title="Edit" class="btn btn-secondry">EDIT</a>
+         </div>
+     </div>
+</div>
+<div class="common-modal" *ngIf="shippingAddressModal">
+    <div class="common-modal__body">
+        <a class="common-modal__close close" (click)="shippingModalClose()">&times;</a>
+        <app-address></app-address>
+    </div>
+    <div class="common-modal-bg"></div>
+</div>

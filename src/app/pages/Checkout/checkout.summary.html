@@ -1,0 +1,52 @@
+
+<div class="checkout-page__summary">
+    <h3 class="checkout-page__summary_title bold">Order Summary</h3>
+    <div class="checkout-page__summary_items">
+        <div class="checkout-page__summary_item">
+            <span>Items ({{CommonServices.addedToCartProduct.length}}):</span>
+            <span class="pull-right">{{CommonServices.currencyFormat(CommonServices.productTotalFunc(0))}}</span>
+        </div>
+        <div class="checkout-page__summary_item">
+            <span>Shipping & Handling:</span>
+            <span class="pull-right">{{CommonServices.currencyFormat(CommonServices.shippingHandling())}}</span>
+        </div>
+    </div>
+    <div class="checkout-page__summary_items">
+        <div class="checkout-page__summary_item">
+            <span>Total before taxes:</span>
+            <span class="pull-right">{{CommonServices.currencyFormat(CommonServices.productTotalFunc(0) + CommonServices.shippingHandling())}}</span>
+        </div>
+        <div class="checkout-page__summary_item">
+            <span>Estimated tax to be collected:</span>
+            <span class="pull-right">{{CommonServices.currencyFormat(CommonServices.taxFunc(CommonServices.productTotalFunc(0) + CommonServices.shippingHandling()))}}</span>
+        </div>
+    </div>
+    <div class="checkout-page__summary_total">
+        <h3 class="bold">Order Total: <span class="pull-right">{{CommonServices.currencyFormat(CommonServices.productTotalFunc(0) + CommonServices.shippingHandling() + CommonServices.taxFunc(CommonServices.productTotalFunc(0) + CommonServices.shippingHandling()))}}</span></h3>
+    </div>
+</div>
+
+<div class="checkout-page__checkbox">
+    <div class="checkout-page__products">
+        <div>
+            <div *ngFor = 'let product of CommonServices.addedToCartProduct' class="checkout-page__product">
+                <div class="row">
+                    <div class="col-xs-12 checkout-page__products_data">
+                        <div class="checkout-page__products_title">
+                            <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
+                        </div>
+                    </div>
+                    <div class="col-xs-3 checkout-page__products_img">
+                        <img class="img-responsive" [src] = 'product.url'>
+                    </div>
+                    <div class="col-xs-3 checkout-page__products_qty bold">
+                        Qty : {{product.Qty}}
+                    </div>
+                    <div class="col-xs-6 checkout-page__products__price bold">
+                        Price : {{CommonServices.currencyFormat(product.Price * product.Qty)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

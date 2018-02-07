@@ -1,0 +1,27 @@
+<div class="mini-cart dropdown">
+    <a  routerLink="cartPage" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+        (<span class="mini-cart__total">{{CommonServices.addedToCartProduct.length}}</span>)
+    </a>
+    <div class="mini-cart__data dropdown-menu">
+        <h1 class="pages-title">Mini Cart Details</h1>
+        <div class="similar-products">
+            <div class="similar-product" *ngFor = 'let product of CommonServices.addedToCartProduct'>
+                <div>
+                    <div class="similar-product__title">
+                        <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
+                    </div>
+                    <div class="similar-product__img">
+                        <img [src] = 'product.url'>
+                    </div>
+                    <div class="similar-product__info">
+                        {{product.Details}}
+                    </div>
+                    <div class="similar-product__price bold">
+                        Price : {{product.Price}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

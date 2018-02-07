@@ -1,0 +1,90 @@
+<div class="container cart-page">
+    <h1 class="page-title">Cart Page</h1>
+    <div class="row">
+        <div *ngIf="CommonServices.addedToCartProduct.length > 0" class="col-sm-12 col-md-10">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = 'let product of CommonServices.addedToCartProduct' class="cart-page__product">
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> 
+                                    <img class="media-object" [src] = 'product.url'>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a>
+                                    </h4>
+                                    <p> {{product.Details}}</p>
+                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                                {{product.Qty}}
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{CommonServices.currencyFormat(product.Price * 1)}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{CommonServices.currencyFormat(product.Price * product.Qty)}}</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                          <a class="btn btn-danger" (click)="addToCartRemove(product)">
+                              <span class="glyphicon glyphicon-remove"></span> Remove
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Subtotal</h5></td>
+                        <td class="text-right"><h5><strong>{{CommonServices.currencyFormat(CommonServices.productTotalFunc(0))}}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Shipping & Handling</h5></td>
+                        <td class="text-right"><h5><strong>{{CommonServices.currencyFormat(CommonServices.shippingHandling())}} </strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>{{CommonServices.currencyFormat(CommonServices.productTotalFunc(CommonServices.shippingHandling()))}}</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-default" routerLink="../products">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-success" routerLink="/checkout">
+                                <span class="glyphicon glyphicon-play"></span> Checkout
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="CommonServices.addedToCartProduct.length < 1" class="col-sm-12 col-md-10">
+            <h3>You have 0 items in your cart</h3>
+            <a class="btn btn-default" routerLink="../products">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+            </a>
+        </div>
+        
+    </div>
+</div>

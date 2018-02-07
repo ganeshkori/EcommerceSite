@@ -1,0 +1,53 @@
+<div class="checkout-step__head">
+    <h3 class="checkout-step__head_title bold">2 - Billing  Information </h3>
+</div>
+<div class="checkout-step__body">
+    <div class="checkout-step__body_address">
+        <h3 class="checkout-step__body_title bold">Billing Address</h3>
+        <form class="main-form" (ngSubmit)="checkoutBillingForm(billingForm)" #billingForm="ngForm"> 
+            <div class="checkout-step__body_address-list" *ngFor = 'let address of LoginService.myAccountAddressBook; let i = index'>
+                <div class="add_block_item">
+                    <div class="radio">
+                        <input id="billingAddress{{i}}" ngModel required value="{{i}}" name="billingAddress" type="radio">
+                        <label for="billingAddress{{i}}">
+                            <div class="add_block_name">{{address.firstName}} {{address.lastName}}</div>
+                            <div class="add_block_address">
+                                {{address.address}} {{address.address2}}, {{address.city}}, 
+                                State : {{address.state}}, Country : {{address.country}}
+                            </div>
+                            <div class="add_block_phone">Phone : {{address.ext}}-{{address.telephone}}</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-step__body_action">
+                <a class="btn btn-primary" (click)="checkoutAddBilling()">Add New</a>
+                <input type="submit" [disabled]="!billingForm.valid" name="" id="" class="btn btn-primary " value="Continue">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="checkout-step__success">
+    <div class="checkout-step__shipping">
+        <div class="checkout-step__shipping-add">
+            <h4 class="checkout-step__body_title bold">Billing Address:</h4>
+            <p class="bold">{{CheckoutStep.checkoutBilling[0].firstName}} {{CheckoutStep.checkoutBilling[0].lastName}}</p>
+            <p>{{CheckoutStep.checkoutBilling[0].address}}</p>
+            <p>{{CheckoutStep.checkoutBilling[0].address2}}, City: {{CheckoutStep.checkoutBilling[0].city}}</p>
+            <p class="sub-text">State : {{CheckoutStep.checkoutBilling[0].state}}, Country : {{CheckoutStep.checkoutBilling[0].country}}</p>
+            <p class="sub-text">Phone: {{CheckoutStep.checkoutBilling[0].ext}}-{{CheckoutStep.checkoutBilling[0].telephone}}</p>
+            <!-- <p>Email : {{CheckoutStep.checkoutBilling[0].email}}</p> -->
+         </div>
+         <div class="checkout-step__success_edit">
+             <a href="#" title="Edit" class="btn btn-secondry">EDIT</a>
+         </div>
+     </div>
+</div>
+
+<div class="common-modal" *ngIf="billingAddressModal">
+    <div class="common-modal__body">
+        <a class="common-modal__close close" (click)="billingModalClose()">&times;</a>
+        <app-address></app-address>
+    </div>
+    <div class="common-modal-bg"></div>
+</div>

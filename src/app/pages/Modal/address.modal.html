@@ -1,0 +1,75 @@
+<div class="address-section">
+    <h2>Address Section</h2>
+    <form class="main-form" (ngSubmit)="addAddressForm(addressForm)" #addressForm="ngForm"> 
+        <fieldset class="shipping-form">
+            <p class="form-group shipping-form_require">*Required fields.</p>
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="firstName" class="h4 bold">First name*</label>
+                    <input type="text" class="form-control" ngModel name="firstName" id="firstName" placeholder="First name*">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="lastName" class="h4 bold">Last name*</label>
+                    <input type="text" class="form-control" ngModel name="lastName" id="lastName" placeholder="Last name*">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8 col-sm-8 rpadding">
+                    <label for="email" class="h4 bold">Email address*</label>
+                    <input type="email" class="form-control" ngModel name="email" id="email" placeholder="Email address*">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8 col-sm-8 rpadding">
+                    <label for="address" class="h4 bold">Address*</label>
+                    <input type="text" class="form-control" ngModel name="address" id="address" placeholder="Address*">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="address2" class="h4 bold">Suite/Apt/Address 2</label>
+                    <input type="text" class="form-control" ngModel name="address2" id="address2" placeholder="Suite/Apt/Address 2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="city" class="h4 bold">City*</label>
+                    <input type="text" class="form-control" ngModel name="city" id="city" placeholder="City*">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="state" class="h4 bold">State/Province*</label>
+                    <select class="form-control selectbox-blue" ngModel name="state" id="state">
+                        <option>State/Province*</option>
+                        <option>State/Province*</option>
+                        <option>State/Province*</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="zip" class="h4 bold">ZIP/Postal Code*</label>
+                    <input type="text" class="form-control" ngModel name="zip" id="zip" placeholder="ZIP/Postal Code">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="country" class="h4 bold">Country*</label>
+                    <select class="form-control selectbox-blue" ngModel name="country" id="country">
+                        <option>United States</option>
+                        <option>United States 1</option>
+                        <option>United States 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="telephone" class="h4 bold">Telephone*</label>
+                    <input type="text" class="form-control" ngModel name="telephone" id="telephone" placeholder="Telephone*">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 rpadding">
+                    <label for="ext" class="h4 bold">Ext.</label>
+                    <input type="text" class="form-control" ngModel name="ext" id="ext" placeholder="Ext">
+                </div>
+            </div>
+        </fieldset>
+        <div class="checkout-step__body_action">
+            <input type="submit" name="" id="" class="btn btn-primary " value="Save">
+        </div>
+    </form>
+</div>

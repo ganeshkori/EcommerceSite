@@ -1,0 +1,42 @@
+<div class="my-account">
+    <h1 class="my-account__title">My Account Order History</h1>
+    <div class="my-account__order-history">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Count</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Placed Date(M/D/Y)</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let orderHistory of LoginService.myAccountOrderHistory; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><a routerLink="../OrderDetails/{{i}}">{{orderHistory.productList.length}}</a></td>
+                        <td><a routerLink="../OrderDetails/{{i}}">{{orderHistory.orderInfo[0].Name}}</a></td>
+                        <td>{{orderHistory.orderInfo[0].Email}}</td>
+                        <td>{{orderHistory.orderInfo[0].Placed}}</td>
+                        <td>{{CommonServices.currencyFormat(orderHistory.orderInfo[0].Total + orderHistory.orderInfo[0].EstimatedTax + orderHistory.orderInfo[0].ShippingHandling)}}</td>
+                        <td><span class="label label-info">Processing</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- <div *ngFor="let company of LoginService.myAccountOrderHistory; 
+                     let i = index; 
+                     let lst = last; 
+                     let fst = first;">
+    {{i+1}}. {{company.orderInfo[0].Placed}}  
+    <span *ngIf="lst"> - Am last!</span>
+    <span *ngIf="fst"> - Am first</span>
+  </div> -->
+
+

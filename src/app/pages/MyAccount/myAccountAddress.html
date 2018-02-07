@@ -1,0 +1,34 @@
+<div class="my-account address-book">
+    <h1>My Account Address</h1>
+    <div class="address-book__lists row">
+        <div class="col-xs-12 col-sm-3" *ngFor = 'let address of LoginService.myAccountAddressBook; let i = index'>
+            <div class="address-book__list">
+                <div class="address-book__list_name bold">{{address.firstName}} {{address.lastName}}</div>
+                <div class="address-book__list_address">
+                    {{address.address}} {{address.address2}}, {{address.city}}, 
+                    <br />
+                    State : {{address.state}}, 
+                    <br />
+                    Country : {{address.country}}
+                </div>
+                <div class="address-book__list_phone">Phone : {{address.ext}}-{{address.telephone}}</div>
+                <div class="address-book__list_email">{{address.email}}</div>
+                <div class="address-book__list_address-option">
+                    <a class="edit">Edit</a>
+                    <a class="delete" (click)="accountAddressRemove(address)">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="address-book__action">
+        <a class="btn btn-primary" (click)="accountAddAddress()">Add New</a>
+    </div>
+</div>
+
+<div class="common-modal" *ngIf="accountAddressModal">
+    <div class="common-modal__body">
+        <a class="common-modal__close close" (click)="accountCloseAddress()">&times;</a>
+        <app-address></app-address>
+    </div>
+    <div class="common-modal-bg"></div>
+</div>

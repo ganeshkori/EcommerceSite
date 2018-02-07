@@ -1,0 +1,104 @@
+<div class="my-account">
+    <h1 class="my-account__title">My Account Order Details</h1>
+    <div class="my-account__order-details" *ngFor="let orderDetails of LoginService.myAccountOrderHistory; let i = index">
+        <div class="my-account__order-details_inner" *ngIf="orderDetailsId == i">
+            <div class="panel panel-default my-account__order-details_info">
+                <div class="panel-heading">
+                    Order Info #{{orderDetailsId}}
+                    <span class="label label-info pull-right">Processing</span>
+                </div>
+                <div class="panel-body">
+                    <strong>Name : </strong>{{orderDetails.orderInfo[0].Name}}<br>
+                    <strong>Email : </strong>{{orderDetails.orderInfo[0].Email}}<br>
+                    <strong>Placed : </strong>{{orderDetails.orderInfo[0].Placed}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 col-lg-4 pull-left">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Billing Details</div>
+                        <div class="panel-body">
+                            <strong>{{orderDetails.billingAddress[0].firstName}} {{orderDetails.billingAddress[0].lastName}}:</strong><br>
+                            {{orderDetails.billingAddress[0].address}} <br>
+                            {{orderDetails.billingAddress[0].address2}}, {{orderDetails.billingAddress[0].city}}<br>
+                            {{orderDetails.billingAddress[0].state}}, {{orderDetails.billingAddress[0].country}}<br>
+                            <strong>{{orderDetails.billingAddress[0].ext}}-{{orderDetails.billingAddress[0].telephone}}</strong><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Payment Information</div>
+                        <div class="panel-body">
+                            <strong>Card Name:</strong> {{orderDetails.paymentMethod[0].cardType}}<br>
+                            <strong>Card Number:</strong> {{orderDetails.paymentMethod[0].cardNumber}}<br>
+                            <strong>Exp Date:</strong> {{orderDetails.paymentMethod[0].monthExpriration}}/{{orderDetails.paymentMethod[0].yearExpriration}}<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-4 pull-right">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Shipping Address</div>
+                        <div class="panel-body">
+                            <strong>{{orderDetails.shippingAddress[0].firstName}} {{orderDetails.shippingAddress[0].lastName}}:</strong><br>
+                            {{orderDetails.shippingAddress[0].address}} <br>
+                            {{orderDetails.shippingAddress[0].address2}}, {{orderDetails.shippingAddress[0].city}}<br>
+                            {{orderDetails.shippingAddress[0].state}}, {{orderDetails.shippingAddress[0].country}}<br>
+                            <strong>{{orderDetails.shippingAddress[0].ext}}-{{orderDetails.shippingAddress[0].telephone}}</strong><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center"><strong>Order summary</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <td><strong>Item Name</strong></td>
+                                            <td class="text-center"><strong>Item Price</strong></td>
+                                            <td class="text-center"><strong>Item Quantity</strong></td>
+                                            <td class="text-right"><strong>Total</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let orderDetailsProduct of orderDetails.productList; let i = index">
+                                            <td>{{orderDetailsProduct.Name}}</td>
+                                            <td class="text-center">{{orderDetailsProduct.Price}}</td>
+                                            <td class="text-center">{{orderDetailsProduct.Qty}}</td>
+                                            <td class="text-right">{{orderDetailsProduct.Price * orderDetailsProduct.Qty}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="highrow"></td>
+                                            <td class="highrow"></td>
+                                            <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                            <td class="highrow text-right"><strong>{{CommonServices.currencyFormat(orderDetails.orderInfo[0].Total)}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center"><strong>Shipping</strong></td>
+                                            <td class="emptyrow text-right"><strong>{{CommonServices.currencyFormat(orderDetails.orderInfo[0].ShippingHandling)}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center"><strong>Total</strong></td>
+                                            <td class="emptyrow text-right"><strong>{{CommonServices.currencyFormat(orderDetails.orderInfo[0].Total + orderDetails.orderInfo[0].EstimatedTax + orderDetails.orderInfo[0].ShippingHandling)}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

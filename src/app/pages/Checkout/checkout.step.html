@@ -1,0 +1,40 @@
+<div class="checkout-page">
+    <div class="checkout-page__data">
+        <h1 class="pages-title">Checkout Step</h1>
+        <div class="row">
+            <div class="col-xs-12 col-md-4 pull-right checkout-page__right">
+                <app-checkoutSummary></app-checkoutSummary>
+            </div>
+            <div class="col-xs-12 col-md-8 pull-left checkout-page__left">
+                <div [ngClass]="(checkoutShippingCheck===true)?'active':'active-success'" class="checkout-step">
+                    <app-checkoutShippingAddress></app-checkoutShippingAddress>
+                </div>
+                <div [ngClass]="{'active': !checkoutShippingCheck, 'active-success': !checkoutBillingCheck}" class="checkout-step">
+                    <app-checkoutBillingAddress></app-checkoutBillingAddress>
+                </div>
+                <div [ngClass]="{'active': !checkoutBillingCheck, 'active-success': !checkoutShippingOptionsCheck}" class="checkout-step">
+                    <app-checkoutShippingOptions></app-checkoutShippingOptions>
+                </div>
+                <div [ngClass]="{'active': !checkoutShippingOptionsCheck, 'active-success': !checkoutPaymentMethodCheck}" class="checkout-step">
+                    <app-checkoutPaymentMethod></app-checkoutPaymentMethod>
+                </div>
+                <div [ngClass]="{'active': !checkoutPaymentMethodCheck}" class="checkout-step">
+                    <div class="checkout-step__head">
+                        <h3 class="checkout-step__head_title bold"> 5 - Review Items </h3>
+                    </div>
+                    <div class="checkout-step__body">
+                        <div class="checkout-step__shipping checkout-step__review">
+                            <h4 class="checkout-step__body_title bold">Please review your order</h4>
+                            <a (click)="checkoutConfirmation()" class="btn btn-primary">Place Order</a>
+                        </div>
+                    </div>
+                    <div class="checkout-step__success">
+                        <div class="checkout-step__review">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
