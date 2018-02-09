@@ -17,7 +17,7 @@
 			<a title="" class="btn btn-primary">Out Of Stock</a>
 		</div>
 		<div class="similar-product__option" *ngIf="product.Qty !== 0">
-			<a title="" class="btn btn-primary" (click)="CommonServices.AddToCartFunction(product.ID,1)">Add To Cart</a>
+			<a title="" class="btn btn-primary" (click)="CommonServices.AddToCartFunction(product.ID,1,'No')">Add To Cart</a>
 		</div>
 	</div>
 </div>

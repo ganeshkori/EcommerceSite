@@ -1,6 +1,6 @@
 <h1 class="pages-title">Product Details</h1>
 <div class="similar-products">
-	<div *ngFor = 'let product of productList'>
+	<div *ngFor = 'let product of ProductsService.productList'>
         <div class="similar-product row" *ngIf='productID === product.ID'>
             <div class="similar-product__title col-xs-12">
                 <h2>{{product.Name}} #:{{product.ID}}</h2>
@@ -25,17 +25,16 @@
                 <div class="similar-product__price bold">
                     <h3>Price : {{CommonServices.currencyFormat(product.Price * 1)}}</h3>
                 </div>
-                <form (ngSubmit)="CommonServices.AddToCartFunction(addToCart.value.productID, addToCart.value.productQty)" #addToCart="ngForm">
+                <form (ngSubmit)="CommonServices.AddToCartFunction(product.ID, addToCart.value.productQty, 'UpdateQty')" #addToCart="ngForm">
                     <div class="similar-product__qty">
                         <div class="form-group">
                             <label>QTY</label>
-                            <input required ngModel="1" name="productQty" class="form-control" type="text">
+                            <input required ngModel="1" name="productQty" class="form-control" type="number">
                         </div>                    
                     </div>
                     <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                    <div class="similar-product__option">{{product.ID}}
-                        <input required ngModel="{{product.ID}}" id="productID" name="productID" type="hidden" />
-                        <input class="btn btn-primary" value="Add To Cart" type="submit">
+                    <div class="similar-product__option">
+                        <input type="submit" [disabled]="!addToCart.valid" class="btn btn-primary" value="Add To Cart">
                         <!-- <a class="btn btn-primary" (click)="addToCart(product.ID)">Add To Cart</a> -->
                         <a class="btn btn-primary" routerLink="">Add To Wishlist</a>
                     </div>

@@ -63,9 +63,24 @@ export class CommonServices implements OnInit {
         var updateQty = this.addedToCartProduct.length - 1;
         this.addedToCartProduct[updateQty].Qty = getProductQty;
     }
-    AddToCartFunction(event, getProductQty){
+    AddToCartFunctionUpdate(event, getProductQty, UpdateQty){       
+        var updateNumber = 0;
+        for (let updateEntry of this.addedToCartProduct) {
+            if(updateEntry.ID===event){
+                this.addedToCartProduct[updateNumber].Qty = getProductQty;
+                sessionStorage.setItem("Qty"+event,  getProductQty);
+                alert("Qty Updated in Cart : "+event);
+            }
+            updateNumber++;
+        }
+    }
+    AddToCartFunction(event, getProductQty, UpdateQty){
         if(sessionStorage.getItem(event)===event){
-            alert("Already in Cart : "+event);
+            if(UpdateQty === 'UpdateQty'){
+                this.AddToCartFunctionUpdate(event, getProductQty, UpdateQty);
+            }else{
+                alert("Already in Cart : "+event);
+            }
         }else{
             alert("Added To Cart : "+event);
             this.AddToCartFunctionPush(event, getProductQty);

@@ -22,6 +22,7 @@ export class LoginService implements OnInit {
     myAccountProfileInfo = [
         {
             "ProfileInfo": {
+                "accessRight":"U",
                 "firstName":"",
                 "lastName": "",
                 "email": ""
