@@ -45,25 +45,30 @@ export class CommonServices implements OnInit {
         for (let entry of this.ProductsService.productList) {
             if(entry.ID===sessionStorage.getItem(entry.ID)){
                 this.addedToCartProduct.push(entry);
+                var updateQty = this.addedToCartProduct.length - 1;
+                this.addedToCartProduct[updateQty].Qty = sessionStorage.getItem("Qty"+entry.ID);
             }
         }        
     }
     // MiniCart End
 
-    AddToCartFunctionPush(getProductId){
+    AddToCartFunctionPush(getProductId, getProductQty){
         for (let entry of this.ProductsService.productList) {
             if(entry.ID===getProductId){
                 this.addedToCartProduct.push(entry);
                 sessionStorage.setItem(getProductId,  getProductId);
+                sessionStorage.setItem("Qty"+getProductId,  getProductQty);
             }
         }
+        var updateQty = this.addedToCartProduct.length - 1;
+        this.addedToCartProduct[updateQty].Qty = getProductQty;
     }
-    AddToCartFunction(event){
+    AddToCartFunction(event, getProductQty){
         if(sessionStorage.getItem(event)===event){
             alert("Already in Cart : "+event);
         }else{
             alert("Added To Cart : "+event);
-            this.AddToCartFunctionPush(event);
+            this.AddToCartFunctionPush(event, getProductQty);
         }
     }
 

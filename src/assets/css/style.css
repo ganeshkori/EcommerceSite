@@ -200,6 +200,12 @@
     /*width: 25%;*/
     padding: 20px;
 }
+.similar-product__img img {
+  width: 100%;
+}
+.similar-product__qty .form-group {
+  max-width: 90px;
+}
 .bold {
 	font-weight: bold;
 }
@@ -237,9 +243,7 @@ nav .dropdown-menu li {
 
 
 
-/* ==========================================================================
-    Checkout Page
-========================================================================== */
+/* Checkout Page Start */
 
 .checkout-page {
   margin-bottom: -39px;
@@ -1287,6 +1291,11 @@ nav .dropdown-menu li {
 .checkout-step__payment-list .radio {
   margin: 0;
 }
+/* Checkout Page End */
+
+.cart-page__product .thumbnail img {
+  width: 100px; 
+}
 
 .my-account h1 {
   margin-bottom: 30px;
@@ -1319,6 +1328,7 @@ nav .dropdown-menu li {
   position: absolute;
   right: 10px;
   top: 20px;
+  cursor: pointer;
 }
 .account-payment .checkout-step__payment-list {
   position: relative

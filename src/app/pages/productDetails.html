@@ -1,45 +1,55 @@
 <h1 class="pages-title">Product Details</h1>
 <div class="similar-products">
 	<div *ngFor = 'let product of productList'>
-        <div class="similar-product" *ngIf='productID === product.ID'>
-            <div class="similar-product__title">
-                <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
+        <div class="similar-product row" *ngIf='productID === product.ID'>
+            <div class="similar-product__title col-xs-12">
+                <h2>{{product.Name}} #:{{product.ID}}</h2>
             </div>
-            <div class="similar-product__img">
+            <div class="similar-product__img col-xs-12 col-sm-6">
                 <img [src] = 'product.url'>
             </div>
-            <div class="rating">
-                <div class="stars">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+            <div class="col-xs-12 col-sm-6">
+                <div class="rating">
+                    <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <span class="review-no">41 reviews</span>
                 </div>
-                <span class="review-no">41 reviews</span>
+                <div class="similar-product__info">
+                    {{product.Details}}
+                </div>
+                <div class="similar-product__price bold">
+                    <h3>Price : {{CommonServices.currencyFormat(product.Price * 1)}}</h3>
+                </div>
+                <form (ngSubmit)="CommonServices.AddToCartFunction(addToCart.value.productID, addToCart.value.productQty)" #addToCart="ngForm">
+                    <div class="similar-product__qty">
+                        <div class="form-group">
+                            <label>QTY</label>
+                            <input required ngModel="1" name="productQty" class="form-control" type="text">
+                        </div>                    
+                    </div>
+                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                    <div class="similar-product__option">{{product.ID}}
+                        <input required ngModel="{{product.ID}}" id="productID" name="productID" type="hidden" />
+                        <input class="btn btn-primary" value="Add To Cart" type="submit">
+                        <!-- <a class="btn btn-primary" (click)="addToCart(product.ID)">Add To Cart</a> -->
+                        <a class="btn btn-primary" routerLink="">Add To Wishlist</a>
+                    </div>
+                </form>
+                <!-- <div class="dropdown" appDropdown>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    </ul>
+                </div> -->
             </div>
-            <div class="similar-product__info">
-                {{product.Details}}
-            </div>
-            <div class="similar-product__price bold">
-                Price : {{CommonServices.currencyFormat(product.Price * 1)}}
-            </div>
-            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-            <div class="similar-product__option">
-                <a class="btn btn-primary" (click)="addToCart(product.ID)">Add To Cart</a>
-                <a class="btn btn-primary" routerLink="">Add To Wishlist</a>
-            </div>
-            <br />
-            {{addedToCart}}
-            <div class="dropdown" appDropdown>
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">HTML</a></li>
-                  <li><a href="#">CSS</a></li>
-                  <li><a href="#">JavaScript</a></li>
-                </ul>
-            </div> 
         </div>
     </div>
 </div>

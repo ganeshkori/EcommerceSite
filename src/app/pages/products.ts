@@ -28,18 +28,19 @@ export class products implements OnInit {
     productList = [];
 
     addToCart(event){
-        this.CommonServices.AddToCartFunction(event);
+        //this.CommonServices.AddToCartFunction(event,1);
     }
 
   ngOnInit(): void {
-    this.http.get('./assets/data/product.json')
-    .map(response => response.json()).subscribe(data => {
-        //this.productList = data;
-    },
-    err => {
-        console.log("Error occured. --Product Listing(products.ts)--")
-    });
-    this.productList = this.ProductsService.productList;
+    // this.http.get('./assets/data/product.json')
+    // .map(response => response.json()).subscribe(data => {
+    //     this.productList = data;
+    // },
+    // err => {
+    //     console.log("Error occured. --Product Listing(products.ts)--")
+    // });
+
+    //this.productList = this.ProductsService.productList;
   }
    
 }
