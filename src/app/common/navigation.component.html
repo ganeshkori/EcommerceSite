@@ -21,7 +21,7 @@
 
 		<ul class="nav navbar-nav navbar-right" *ngIf="LoginService.UserSession()">
 			<li>
-				<a routerLink="myAccount" >Welcome : {{LoginService.myAccountProfileInfo[0].ProfileInfo.firstName}} {{LoginService.myAccountProfileInfo[0].ProfileInfo.lastName}}</a>
+				<a routerLink="myAccount">Welcome : {{LoginService.myAccountProfileInfo[0].ProfileInfo.firstName}} {{LoginService.myAccountProfileInfo[0].ProfileInfo.lastName}}</a>
 			</li>
 			<li class="dropdown" routerLinkActive="active" appDropdown>
 				<a class="dropdown-toggle" data-toggle="dropdown">My Account<span class="caret"></span></a>

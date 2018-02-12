@@ -22,7 +22,7 @@ export class LoginService implements OnInit {
     myAccountProfileInfo = [
         {
             "ProfileInfo": {
-                "accessRight":"U",
+                "accessRight":"",
                 "firstName":"",
                 "lastName": "",
                 "email": ""
@@ -110,6 +110,7 @@ export class LoginService implements OnInit {
             this.myAccountProfileInfo[0].ProfileInfo.firstName = data.ProfileInfo.firstName;
             this.myAccountProfileInfo[0].ProfileInfo.lastName = data.ProfileInfo.lastName;
             this.myAccountProfileInfo[0].ProfileInfo.email = data.ProfileInfo.email;
+            this.myAccountProfileInfo[0].ProfileInfo.accessRight = data.ProfileInfo.accessRight;
             this.CommonServices.loading = false;
         },
         err => {
@@ -164,6 +165,7 @@ export class LoginService implements OnInit {
         this.myAccountProfileInfo[0].ProfileInfo.firstName = firstName;
         this.myAccountProfileInfo[0].ProfileInfo.lastName = lastName;
         this.myAccountProfileInfo[0].ProfileInfo.email = username;
+        this.myAccountProfileInfo[0].ProfileInfo.accessRight = "U";
         firebase.auth().signInWithEmailAndPassword(username, password)
             .then(
                 response => {
@@ -226,6 +228,7 @@ export class LoginService implements OnInit {
         this.myAccountProfileInfo = [
             {
                 "ProfileInfo": {
+                    "accessRight":"",
                     "firstName":"",
                     "lastName": "",
                     "email": ""
