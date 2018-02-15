@@ -6,6 +6,7 @@ import { $ } from 'protractor';
 import { ProductsService } from '../services/product.service';
 import { CommonServices } from '../services/common.services';
 import { NgForm } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class productDetails {
     private activatedRoute: ActivatedRoute, 
     private http: Http, 
     private ProductsService: ProductsService,
-    private CommonServices: CommonServices
+    private CommonServices: CommonServices,
+    private LoginService: LoginService
   ) { }
 
   productID;
@@ -49,6 +51,15 @@ export class productDetails {
           this.productList.push(entry);
         }
     }
-    
+  }
+
+  addWishlistProduct = [
+    {
+        "productID":"",
+    }
+  ];
+  addWishlistProductFunc(getData){
+      this.addWishlistProduct[0].productID = getData;
+      this.LoginService.myAccountWishlistProductPut(this.addWishlistProduct[0]);
   }
 }

@@ -69,7 +69,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let orderDetailsProduct of orderDetails.productList; let i = index">
-                                            <td>{{orderDetailsProduct.Name}}</td>
+                                            <td><a routerLink="../../../productDetails/{{orderDetailsProduct.ID}}">{{orderDetailsProduct.Name}}</a></td>
                                             <td class="text-center">{{orderDetailsProduct.Price}}</td>
                                             <td class="text-center">{{orderDetailsProduct.Qty}}</td>
                                             <td class="text-right">{{orderDetailsProduct.Price * orderDetailsProduct.Qty}}</td>
@@ -85,6 +85,12 @@
                                             <td class="emptyrow"></td>
                                             <td class="emptyrow text-center"><strong>Shipping</strong></td>
                                             <td class="emptyrow text-right"><strong>{{CommonServices.currencyFormat(orderDetails.orderInfo[0].ShippingHandling)}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center"><strong>Estimated Tax</strong></td>
+                                            <td class="emptyrow text-right"><strong>{{CommonServices.currencyFormat(orderDetails.orderInfo[0].EstimatedTax)}}</strong></td>
                                         </tr>
                                         <tr>
                                             <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>

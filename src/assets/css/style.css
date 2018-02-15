@@ -220,6 +220,32 @@ input[type=number] {
 .similar-product__qty .form-group {
   max-width: 90px;
 }
+.similar-product__price {
+  margin: 10px 0;
+}
+.similar-product__title {
+  min-height: 45px;
+}
+.similar-product__title a {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #555;
+}
+.glyphicon-star::before {
+  font-size: 18px;
+}
+.similar-product__stars .active:before {
+  color: #286090;
+}
+.similar-product__option .add-wishlist .glyphicon-heart::before {
+  font-size: 20px;
+  vertical-align: middle;
+}
+.pagination-section {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
 .bold {
 	font-weight: bold;
 }
@@ -1310,6 +1336,24 @@ nav .dropdown-menu li {
 .cart-page__product .thumbnail img {
   width: 100px; 
 }
+/* Order Confirmation Start */
+.orderConfirmation__table_head div {
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.orderConfirmation__table_body_product {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+.orderConfirmation__table_footer {
+  padding: 20px;
+}
+.orderConfirmation__table_footer a {
+  float: right;
+  margin-left: 20px;
+}
+/* Order Confirmation End */
 
 .my-account h1 {
   margin-bottom: 30px;

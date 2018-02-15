@@ -1,10 +1,9 @@
-import { Component, Input, Injectable, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router }  from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import { ProductsService } from '../services/product.service';
-
 import { CommonServices } from '../services/common.services';
 
 
@@ -26,12 +25,15 @@ export class products implements OnInit {
     ){}
    
     productList = [];
+    pagination = 1;
+    productPerPage = 5;
+    paginationShow = [];
 
     addToCart(event){
         //this.CommonServices.AddToCartFunction(event,1);
     }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // this.http.get('./assets/data/product.json')
     // .map(response => response.json()).subscribe(data => {
     //     this.productList = data;
@@ -41,6 +43,11 @@ export class products implements OnInit {
     // });
 
     //this.productList = this.ProductsService.productList;
+
+    var pageCount = this.ProductsService.productList.length/this.productPerPage;
+    for(this.pagination = 1;pageCount>=this.pagination;this.pagination++) {
+      this.paginationShow.push(this.pagination);
+    }
   }
    
 }

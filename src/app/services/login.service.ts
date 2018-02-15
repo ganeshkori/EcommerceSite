@@ -8,7 +8,7 @@ import { CommonServices } from "./common.services";
 export class LoginService implements OnInit {
 
     constructor(
-        private http: Http, 
+        private http: Http,
         private router: Router,
         private CommonServices: CommonServices
     ){}
@@ -225,20 +225,25 @@ export class LoginService implements OnInit {
         sessionStorage.setItem('currentPassword',  null);
         this.userToken = null;
         this.router.navigate(['/loginPage']);
-        this.myAccountProfileInfo = [
-            {
-                "ProfileInfo": {
-                    "accessRight":"",
-                    "firstName":"",
-                    "lastName": "",
-                    "email": ""
-                }
-            }
-        ];
+        // this.myAccountProfileInfo = [
+        //     {
+        //         "ProfileInfo": {
+        //             "accessRight":"",
+        //             "firstName":"",
+        //             "lastName": "",
+        //             "email": ""
+        //         }
+        //     }
+        // ];
         this.myAccountAddressBook = [];
         this.myAccountPaymentsInfo = [];
         this.myAccountWishlistProduct = [];
         this.myAccountOrderHistory = [];
+
+        this.myAccountProfileInfo[0].ProfileInfo.firstName = "";
+        this.myAccountProfileInfo[0].ProfileInfo.lastName = "";
+        this.myAccountProfileInfo[0].ProfileInfo.email = "";
+        this.myAccountProfileInfo[0].ProfileInfo.accessRight = "";
     }
     
     currentUserUID(){

@@ -141,7 +141,7 @@ export class CheckoutStep implements OnInit {
             "Name": "Error"
         }
     ];
-  
+
     checkoutData = [
         {
             "shippingAddress": this.checkoutShipping,

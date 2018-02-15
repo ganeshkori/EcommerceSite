@@ -1,24 +1,49 @@
-<h1 class="pages-title">Product Listing</h1>
-<div class="similar-products">
-	<div class="similar-product  col-xs-12  col-sm-6  col-md-3" *ngFor = 'let product of ProductsService.productList'>
-		<div class="similar-product__title">
-			<a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
-		</div>
-		<div class="similar-product__img">
-			<img [src] = 'product.url'>
-		</div>
-		<div class="similar-product__info">
-			{{product.Details}}
-		</div>
-		<div class="similar-product__price bold">
-			Price : {{CommonServices.currencyFormat(product.Price * 1)}}
-		</div>
-		<div class="similar-product__option" *ngIf="product.Qty === 0">
-			<a title="" class="btn btn-primary">Out Of Stock</a>
-		</div>
-		<div class="similar-product__option" *ngIf="product.Qty !== 0">
-			<a title="" class="btn btn-primary" (click)="CommonServices.AddToCartFunction(product.ID,1,'No')">Add To Cart</a>
+<div class="product-listing">
+	<h1 class="pages-title">Product Listing</h1>
+	<div class="similar-products">
+		<div class="similar-product  col-xs-12  col-sm-6  col-md-3" *ngFor="let product of ProductsService.productList; let i = index">
+			<div class="similar-product__title">
+				<a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a> 
+			</div>
+			<div class="similar-product__img">
+				<img [src] = 'product.url'>
+			</div>
+			<div class="similar-product__stars">
+				<span class="active glyphicon glyphicon-star"></span>
+				<span class="active glyphicon glyphicon-star"></span>
+				<span class="active glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star"></span>
+			</div>
+			<div class="similar-product__info">
+				{{product.Details}}
+			</div>
+			<div class="similar-product__price bold">
+				Price : {{CommonServices.currencyFormat(product.Price * 1)}}
+			</div>
+			<div class="similar-product__option">
+				<input id="compare{{i}}" type="checkbox" name="Compare">
+				<label for="compare{{i}}">Compare</label>
+				<a title="" *ngIf="product.Qty === 0" class="btn btn-primary">Out Of Stock</a>
+				<a title="" *ngIf="product.Qty !== 0" class="btn btn-primary" (click)="CommonServices.AddToCartFunction(product.ID,1,'No')">Add To Cart</a>
+			</div>
 		</div>
 	</div>
+	<div class="pagination-section">
+		<ul class="pagination">
+			<li class="page-item disabled">
+				<span class="page-link">Previous</span>
+			</li>
+			<li class="page-item" *ngFor="let pagination of paginationShow">
+				<a class="page-link" href="#">{{pagination}}</a>
+			</li>
+			<!-- <li class="page-item active">
+				<span class="page-link">2</span>
+			</li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+			<li class="page-item">
+				<a class="page-link" href="#">Next</a>
+			</li>
+		</ul>
+	</div>
 </div>
-

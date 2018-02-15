@@ -1,57 +1,84 @@
-<div class="container order-confirmation">
-        <h1 class="pages-title">Order Confirmation</h1>
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 pull-right">
-                    <app-checkoutSummary></app-checkoutSummary>
+<div *ngFor="let orderConfirmation of LoginService.myAccountOrderHistory; let lst = last" class="container order-confirmation">
+    <div class="row" *ngIf="lst">
+        <h1 class="col-xs-12 pages-title">Order Confirmation</h1>
+        <div class="col-xs-12 col-sm-4 pull-right">
+            <!-- <app-checkoutSummary></app-checkoutSummary> -->
+            
+            <div class="checkout-page__summary">
+                <h3 class="checkout-page__summary_title bold">Order Summary</h3>
+                <div class="checkout-page__summary_items">
+                    <div class="checkout-page__summary_item">
+                        <span>Items ({{orderConfirmation.productList.length}}):</span>
+                        <span class="pull-right">{{CommonServices.currencyFormat(orderConfirmation.orderInfo[0].Total)}}</span>
+                    </div>
+                    <div class="checkout-page__summary_item">
+                        <span>Shipping & Handling:</span>
+                        <span class="pull-right">{{CommonServices.currencyFormat(orderConfirmation.orderInfo[0].ShippingHandling)}}</span>
+                    </div>
+                </div>
+                <div class="checkout-page__summary_items">
+                    <div class="checkout-page__summary_item">
+                        <span>Total before taxes:</span>
+                        <span class="pull-right">{{CommonServices.currencyFormat(orderConfirmation.orderInfo[0].Total + orderConfirmation.orderInfo[0].ShippingHandling)}}</span>
+                    </div>
+                    <div class="checkout-page__summary_item">
+                        <span>Estimated tax to be collected:</span>
+                        <span class="pull-right">{{CommonServices.currencyFormat(orderConfirmation.orderInfo[0].EstimatedTax)}}</span>
+                    </div>
+                </div>
+                <div class="checkout-page__summary_total">
+                    <h3 class="bold">Order Total: <span class="pull-right">{{CommonServices.currencyFormat(orderConfirmation.orderInfo[0].Total + orderConfirmation.orderInfo[0].ShippingHandling + orderConfirmation.orderInfo[0].EstimatedTax)}}</span></h3>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-8 pull-left">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor = 'let product of CommonServices.addedToCartProduct' class="cart-page__product">
-                            <td class="col-sm-8 col-md-6">
-                                <div class="media">
-                                    <a class="thumbnail pull-left" href="#"> 
-                                        <img class="media-object" [src] = 'product.url'>
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a>
-                                        </h4>
-                                        <p> {{product.Details}}</p>
-                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+        </div>
+        <div class="col-xs-12 col-sm-8 pull-left">
+            <div class="orderConfirmation__table">
+
+                <div class="row orderConfirmation__table_head">
+                    <div class="col-sm-8 col-md-6">Product</div>
+                    <div class="col-sm-2 col-md-2">Quantity</div>
+                    <div class="col-sm-2 col-md-2 text-center">Price</div>
+                    <div class="col-sm-2 col-md-2 text-center">Total</div>
+                </div>
+                <div class="orderConfirmation__table_body">
+                    <div *ngFor="let product of orderConfirmation.productList" class="orderConfirmation__table_body_product row">
+                        <div class="col-sm-8 col-md-6">
+                            <div class="">
+                                <a class="thumbnail col-xs-3" routerLink="../../productDetails/{{product.ID}}"> 
+                                    <img class="media-object" [src]="product.url">
+                                </a>
+                                <div class="col-xs-9">
+                                    <h4 class="media-heading">
+                                        <a routerLink="/productDetails/{{product.ID}}">{{product.Name}} #:{{product.ID}}</a>
+                                    </h4>
+                                    <div class="similar-product__stars">
+                                        <span class="active glyphicon glyphicon-star"></span>
+                                        <span class="active glyphicon glyphicon-star"></span>
+                                        <span class="active glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
                                     </div>
+                                    <p> {{product.Details}}</p>
+                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                                 </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                    {{product.Qty}}
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{CommonServices.currencyFormat(product.Price * 1)}}</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{CommonServices.currencyFormat(product.Price * product.Qty)}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a class="btn btn-default" routerLink="../products">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                </a>
-                            </td>
-                            <td>
-                                <a class="btn btn-success">
-                                    <span class="glyphicon glyphicon-play"></span> My Account
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2" style="text-align: center">
+                            {{product.Qty}}
+                        </div>
+                        <div class="col-sm-2 col-md-2 text-center"><strong>{{CommonServices.currencyFormat(product.Price * 1)}}</strong></div>
+                        <div class="col-sm-2 col-md-2 text-center"><strong>{{CommonServices.currencyFormat(product.Price * product.Qty)}}</strong></div>
+                    </div>
+                </div>
+                <div class="orderConfirmation__table_footer row">
+                    <a class="btn btn-default" routerLink="../products">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                    </a>
+                    <a class="btn btn-success" routerLink="./myAccount">
+                        <span class="glyphicon glyphicon-play"></span> My Account
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+</div>

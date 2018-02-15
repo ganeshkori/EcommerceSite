@@ -9,15 +9,12 @@
                 <img [src] = 'product.url'>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <div class="rating">
-                    <div class="stars">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <span class="review-no">41 reviews</span>
+                <div class="similar-product__stars">
+                    <span class="active glyphicon glyphicon-star"></span>
+                    <span class="active glyphicon glyphicon-star"></span>
+                    <span class="active glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
                 </div>
                 <div class="similar-product__info">
                     {{product.Details}}
@@ -36,7 +33,7 @@
                     <div class="similar-product__option">
                         <input type="submit" [disabled]="!addToCart.valid" class="btn btn-primary" value="Add To Cart">
                         <!-- <a class="btn btn-primary" (click)="addToCart(product.ID)">Add To Cart</a> -->
-                        <a class="btn btn-primary" routerLink="">Add To Wishlist</a>
+                        <a class="btn btn-default add-wishlist" (click)="addWishlistProductFunc(product.ID)"><span class="glyphicon glyphicon-heart"></span> Add To Wishlist</a>
                     </div>
                 </form>
                 <!-- <div class="dropdown" appDropdown>
